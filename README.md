@@ -1,54 +1,23 @@
-<p align="center"><img src="https://i.loli.net/2020/04/07/nAzjDJlX7oc5qEw.png" width="400"></p>
+<p align="center"><img src="https://i.loli.net/2020/04/07/nAzjDJlX7oc5qEw.png" width="300"></p>
 
 <p align="center">
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue" alt="license MIT"></a>
 <a href="https://github.com/assimon/dujiaoka/releases/tag/2.0.4"><img src="https://img.shields.io/badge/version-2.0.4-red" alt="version 2.0.4"></a>
 <a href="https://www.php.net/releases/7_4_0.php"><img src="https://img.shields.io/badge/PHP-7.4-lightgrey" alt="php74"></a>
-<a href="https://shang.qq.com/wpa/qunwpa?idkey=37b6b06f7c941dae20dcd5784088905d6461064d7f33478692f0c4215546cee0"><img src="https://img.shields.io/badge/QQ%E7%BE%A4-568679748-green" alt="QQ群：568679748"></a>
 </p>
 
 ## 独角数卡
 
-开源式站长自动化售货解决方案、高效、稳定、快速！
+⭐开源式站长自动化售货解决方案、高效、稳定、快速！
 
-- 框架来自：[laravel/framework](https://github.com/laravel/laravel).
-- 后台管理系统：[laravel-admin](https://laravel-admin.org/).
-- 前端ui [bootstrap](https://getbootstrap.com/).
+⭐本项目提供了一个基于Docker的一键部署，帮助用户轻松搭建自己的发卡站。
 
-核心贡献者：
-- [iLay1678](https://github.com/iLay1678)
+⭐在原版基础上增加更好的容器化部署支持，增加更多的主题可供选择。
 
-模板贡献者：
-- [Julyssn](https://github.com/Julyssn) 模板`luna`作者
-- [bimoe](https://github.com/bimoe) 模板`hyper`作者
+⭐本项目fork自动化售货系统-独角数卡[assimon/dujiaoka](https://github.com/assimon/dujiaoka)的最新源码，保持同步更新。
 
-鸣谢以上开源项目及贡献者，排名不分先后.
-
-## 系统优势
-
-采用业界流行的`laravel`框架，安全及稳定性提升。    
-支持`自定义前端模板`功能   
-支持`国际化多语言包`（需自行翻译）  
-代码全部开源，所有扩展包采用composer加载，代码所有内容可溯源！     
-长期技术更新支持！
-
-## 写在前面
-本程序有一定的上手难度（对于小白而言），需要您对linux服务器有基本的认识和操作度   
-且本程序不支持虚拟主机，大概率也不支持windows服务器！  
-如果您连宝塔、phpstudy、AppNode等一键可视化服务器面板也未曾使用或听说过，那么我大概率劝您放弃本程序！  
-如果您觉得部署有难度，建议仔细阅读（仔细！）宝塔视频安装篇教程，里面有保姆级的安装流程和视频教程！   
-认真观看部署教程我可以保证您98%可能性能部署成功！  
-勤动手，多思考，善研究！
-
-## 使用交流      
-Telegram: [https://t.me/dujiaoka](https://t.me/dujiaoka)    
-关注Telegram官方频道：[https://t.me/dujiaoshuka](https://t.me/dujiaoshuka) (系统更新通知，bug更新，重大事件推送)
-
-## 🔥推荐服务器 
-- （美国免备案vps，配置2核2G仅需`20.98$`≈`145RMB`一年/支持支付宝付款）[👉🏻点我直达](https://my.racknerd.com/aff.php?aff=2745&pid=681)
-
-## 界面尝鲜
-【官方unicorn模板】
+## 主题预览
+【unicorn模板】
 ![首页.png](https://i.loli.net/2021/09/14/NZIl6s9RXbHwkmA.png)
 
 【luna模板】 
@@ -57,15 +26,105 @@ Telegram: [https://t.me/dujiaoka](https://t.me/dujiaoka)
 【hyper模板】  
 ![首页.png](https://i.loli.net/2021/01/06/nHCSV5PdJIzT6Gy.png)
 
-## 安装篇
-- [Linux环境安装](https://github.com/assimon/dujiaoka/wiki/linux_install)
-- [Docker安装](https://github.com/assimon/dujiaoka/wiki/docker_install)
-- [2.x版本宝塔安装教程](https://github.com/assimon/dujiaoka/wiki/2.x_bt_install)
-- [1.x版本宝塔环境安装](https://github.com/assimon/dujiaoka/wiki/1.x_bt_install)
-- [常见问题锦集-你遇到的问题大部分能在这里找到解决！！](https://github.com/assimon/dujiaoka/wiki/problems)
-- [系统升级](https://github.com/assimon/dujiaoka/wiki/update)
-- [各支付对应后台配置](https://github.com/assimon/dujiaoka/wiki/problems#各支付对应配置)
-- [视频教程及工具集合](https://pan.dujiaoka.com)
+【bing模板】  
+![首页.png](./public/assets/bing/preview.png)
+
+## Docker部署
+
+如果使用已经部署好的数据库和redis，可选择使用脚本创建容器，推荐使用编排方式更好维护。
+
+#### 1.脚本
+```sh 
+install_faka(){
+  
+    faka_home=$HOME/faka
+    
+    mkdir -p $faka_home/{uploads,storage}
+    
+    # get .env
+    wget https://raw.githubusercontent.com/ozshen/dujiaoka_reea/master/.env -O $faka_home/env.conf
+    
+    chmod -R 775 env.conf storage uploads
+    
+    # enable https
+    # sed -i 's/^ADMIN_HTTPS=.*/ADMIN_HTTPS=true/' $faka_home/env.conf
+  
+    docker run -d --name dujiaoka \
+    -e INSTALL=true \
+    -v $faka_home/env.conf:/dujiaoka/.env \
+    -v $faka_home/uploads:/dujiaoka/public/uploads \
+    -v $faka_home/storage:/dujiaoka/storage \
+    -p 55501:80 \
+    --network=bridge \
+    --restart=always \
+    devashen/dujiaoka:latest
+} install_faka
+```
+
+#### 2.编排 `docker-compose.yaml`
+
+```yaml
+version: "3"
+
+services:
+  web:
+    image: devashen/dujiaoka:latest
+    container_name: faka-web
+    environment:
+        # 不需要重新安装时，将INSTALL改为false
+        - INSTALL=true
+    volumes:
+      - ./env.conf:/dujiaoka/.env
+      - ./uploads:/dujiaoka/public/uploads
+      - ./storage:/dujiaoka/storage
+      # 如果每次启动容器都需要运行某些命令，可将命令行置入start-hook.sh文件
+      # - ./start-hook.sh:/dujiaoka/start-hook.sh
+    ports:
+      - 127.0.0.1:54321:80
+    restart: always
+ 
+  db:
+    image: mariadb:focal
+    container_name: faka-data
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456789
+      - MYSQL_DATABASE=dujiaoka
+      - MYSQL_USER=dujiaoka
+      - MYSQL_PASSWORD=123456789
+    volumes:
+      - ./data:/var/lib/mysql
+
+  redis:
+    image: redis:alpine
+    container_name: faka-redis
+    restart: always
+    volumes:
+      - ./redis:/data
+```
+
+#### start-hook 的示例内容：
+```bash
+#!/bin/sh
+echo "Executing start-hook ..."
+```
+
+#### 环境变量
+
+参照项目中的.env配置，按需要进行修改。
+
+
+#### 启动服务
+
+```bash
+docker-compose up -d
+```
+
+## 默认后台
+
+- 后台路径 `/admin`
+- 默认管理员账号 `admin`
+- 默认管理员密码 `admin`
 
 ## 支付接口已集成
 - [x] 支付宝当面付
@@ -100,12 +159,6 @@ Telegram: [https://t.me/dujiaoka](https://t.me/dujiaoka)
 - **\*需要开启的函数：`putenv`，`proc_open`，`pcntl_signal`，`pcntl_alarm`**
 - 安装`opcache`扩展
 
-## 默认后台
-
-- 后台路径 `/admin`
-- 默认管理员账号 `admin`
-- 默认管理员密码 `admin`
-
 ## 免责声明
 
 独角数卡程序是免费开源的产品，仅用于学习交流使用！       
@@ -113,16 +166,3 @@ Telegram: [https://t.me/dujiaoka](https://t.me/dujiaoka)
 因为作者即本人仅完成代码的开发和开源活动`(开源即任何人都可以下载使用)`，从未参与用户的任何运营和盈利活动。    
 且不知晓用户后续将`程序源代码`用于何种用途，故用户使用过程中所带来的任何法律责任即由用户自己承担。      
 
-
-## Thanks
-
-Thanks JetBrains for the free open source license
-
-<a href="https://www.jetbrains.com/?from=gev" target="_blank">
-	<img src="https://i.loli.net/2021/02/08/2aejB8rwNmQR7FG.png" width = "260" align=center />
-</a>
-
-
-## License
-
-独角数卡 DJK Inc [MIT license](https://opensource.org/licenses/MIT).
