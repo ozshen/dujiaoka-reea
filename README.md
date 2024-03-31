@@ -27,7 +27,7 @@
 ![首页.png](https://i.loli.net/2021/01/06/nHCSV5PdJIzT6Gy.png)
 
 【bing模板】  
-![首页.png](./public/assets/bing/preview.png)
+![首页.png](/public/assets/bing/preview.png)
 
 ## Docker部署
 
@@ -49,7 +49,7 @@ install_faka(){
     # enable https
     # sed -i 's/^ADMIN_HTTPS=.*/ADMIN_HTTPS=true/' $faka_home/env.conf
   
-    docker run -d --name dujiaoka \
+    docker run -d --name faka-web \
     -e INSTALL=true \
     -v $faka_home/env.conf:/dujiaoka/.env \
     -v $faka_home/uploads:/dujiaoka/public/uploads \
@@ -57,7 +57,7 @@ install_faka(){
     -p 55501:80 \
     --network=bridge \
     --restart=always \
-    devashen/dujiaoka:latest
+    ozshen/dujiaoka:latest
 } install_faka
 ```
 
@@ -68,7 +68,7 @@ version: "3"
 
 services:
   web:
-    image: devashen/dujiaoka:latest
+    image: ozshen/dujiaoka:latest
     container_name: faka-web
     environment:
         # 不需要重新安装时，将INSTALL改为false
